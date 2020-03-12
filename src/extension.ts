@@ -3,7 +3,7 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("Exntesion activated");
   let timeout: NodeJS.Timer | undefined = undefined;
 
-  const color = "rgba(100,0,0,0.3)";
+  const color = "rgba(100,200,0,0.3)";
   const textDecoration = vscode.window.createTextEditorDecorationType({
     backgroundColor: color,
     overviewRulerColor: color,
