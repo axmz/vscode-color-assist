@@ -6,11 +6,12 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("Extension activated");
   let timeout: NodeJS.Timer | undefined = undefined;
 
+  const defaultColor = 'rgba(100,200,0,0.2)';
   function colorPicker(colorName: string, colorTable: any) {
     const _rgba = colorTable[colorName][1]
     const rgba = _rgba.replace('1)', '0.1)')
     if (!rgba) {
-      return 'rgba(100,200,0,0.2)' //default
+      return defaultColor;
     }
     return rgba
   }
@@ -36,9 +37,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     while ((match = regex.exec(text))) {
       // debugger;
-      console.log("match", match);
-      console.log("match.index", match.index);
-      console.log("match.length", match[0].length);
       const startPos = activeEditor.document.positionAt(match.index);
       const endPos = activeEditor.document.positionAt(match.index + match[0].length);
       let decoration = { range: new vscode.Range(startPos, endPos) };
@@ -47,7 +45,6 @@ export function activate(context: vscode.ExtensionContext) {
       decorations.push(decorationType)
       activeEditor.setDecorations(decorationType, [ decoration ]);
     }
-    console.log('sections', sections)
   }
 
   let activeEditor = vscode.window.activeTextEditor;
