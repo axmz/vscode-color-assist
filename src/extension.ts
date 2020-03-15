@@ -1,41 +1,53 @@
 import * as vscode from "vscode";
+import {TextEditorDecorationType} from 'vscode'
+import {webColors} from './webcolors';
+
 export function activate(context: vscode.ExtensionContext) {
-  console.log("Exntesion activated");
+  console.log("Extension activated");
   let timeout: NodeJS.Timer | undefined = undefined;
 
-  const color = "rgba(100,200,0,0.3)";
-  const textDecoration = vscode.window.createTextEditorDecorationType({
-    backgroundColor: color,
-    overviewRulerColor: color,
-    overviewRulerLane: vscode.OverviewRulerLane.Right
-  });
+  function colorPicker(colorName: string, colorTable: any) {
+    const _rgba = colorTable[colorName][1]
+    const rgba = _rgba.replace('1)', '0.1)')
+    if (!rgba) {
+      return 'rgba(100,200,0,0.2)' //default
+    }
+    return rgba
+  }
 
+  const textDecoration = (color: string ) => {
+    return vscode.window.createTextEditorDecorationType({
+    backgroundColor: colorPicker(color, webColors),
+    overviewRulerColor: colorPicker(color, webColors),
+    overviewRulerLane: vscode.OverviewRulerLane.Right
+  })};
+
+  let decorations: TextEditorDecorationType[] = []
   function changeColor() {
     if (!activeEditor) {
       return;
     }
-    const regEx = /\/\/#red/g;
-    console.log("regex", regEx);
+    decorations.forEach(d => d.dispose())
+    
+    const regex = /(\/\/#(\w*))([\s\S]*?)(\/\/#)/gm;
     const text = activeEditor.document.getText();
     const sections: vscode.DecorationOptions[] = [];
-    let prevEndPos;
-    let prevStartPos;
     let match;
-    while ((match = regEx.exec(text))) {
-      console.log("match", match);
-      const startPos = activeEditor.document.positionAt(match.index);
-      const endPos = activeEditor.document.positionAt(text.length);
-      let decoration;
-      if (!prevEndPos) {
-        decoration = { range: new vscode.Range(startPos, endPos) };
-      } else {
-        decoration = { range: new vscode.Range(prevEndPos, endPos) };
-      }
-			prevEndPos = activeEditor.document.positionAt(match.index + match.length);
 
-      sections.push(decoration);
+    while ((match = regex.exec(text))) {
+      // debugger;
+      console.log("match", match);
+      console.log("match.index", match.index);
+      console.log("match.length", match[0].length);
+      const startPos = activeEditor.document.positionAt(match.index);
+      const endPos = activeEditor.document.positionAt(match.index + match[0].length);
+      let decoration = { range: new vscode.Range(startPos, endPos) };
+      const color = match[2]
+      const decorationType = textDecoration(color)
+      decorations.push(decorationType)
+      activeEditor.setDecorations(decorationType, [ decoration ]);
     }
-    activeEditor.setDecorations(textDecoration, sections);
+    console.log('sections', sections)
   }
 
   let activeEditor = vscode.window.activeTextEditor;
