@@ -34,4 +34,17 @@
     "typescript": "^3.7.5",
     "vscode-test": "^1.3.0"
   }
+ ,
+  "contributes": {
+    "configuration": {
+      "title": "Comment",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "default": "//",
+          "description": "Comment sign"
+        }
+      }
+    }
+  }
 }
