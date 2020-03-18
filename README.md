@@ -1,65 +1,29 @@
-# color-assist README
+# About
 
-This is the README for your extension "color-assist". After writing up a brief description, we recommend including the following sections.
+The extension is experimental.  
 
-## Features
+Color Assist allows you to highlight your code blocks.  
+By default the highligh scope is defined by `//#color` and `//#`  
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Example
 
-For example if there is an image subfolder under your extension project workspace:
+```JavaScript
+//#red
+function log() {
+  console.log("hello");
+}
+//#
+```
 
-\!\[feature X\]\(images/feature-x.png\)
+### It will look like that:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<img src="./assets/color-assist.png" width="70%">
 
-## Requirements
+# Settings
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```JSON
+{
+"color-assist.comment": "//",
+"color-assist.opacity": 0.1
+}
+```

@@ -1,13 +1,14 @@
 {
   "name": "color-assist",
-  "displayName": "color-assist",
-  "description": "",
+  "displayName": "Color Assist",
+  "publisher": "axmz",
+  "description": "Highlight blocks of code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.43.0"
   },
   "categories": [
-    "Other"
+    "Formatters"
   ],
   "activationEvents": [
     "*"
@@ -37,8 +38,13 @@
  ,
   "contributes": {
     "configuration": {
-      "title": "Comment",
+      "title": "Configurations",
       "properties": {
+        "opacity": {
+          "type": "number",
+          "default": "0.1",
+          "description": "Highlight opacity"
+        },
         "comment": {
           "type": "string",
           "default": "//",

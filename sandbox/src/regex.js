@@ -16,8 +16,8 @@ end text
 
 
 var escapeRegExp = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
-const comment = '//';
 const regex = /(\/\/#(\w*))([\s\S]*?)(\/\/#)/gm;
+const comment = '//';
 const r = new RegExp(`(${escapeRegExp(comment)}#(\\w*))([\\s\\S]*?)(\\/\\/#)`, 'gm');
 let match;
 
