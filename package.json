@@ -2,6 +2,10 @@
   "name": "color-assist",
   "displayName": "Color Assist",
   "publisher": "axmz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axmz/vscode-color-assist"
+  },
   "description": "Highlight blocks of code",
   "version": "0.0.1",
   "engines": {
@@ -34,21 +38,27 @@
     "mocha": "^7.0.1",
     "typescript": "^3.7.5",
     "vscode-test": "^1.3.0"
-  }
- ,
+  },
   "contributes": {
     "configuration": {
-      "title": "Configurations",
+      "title": "color-assist",
       "properties": {
-        "opacity": {
+        "color-assist.opacity": {
           "type": "number",
-          "default": "0.1",
+          "default": 0.1,
+          "minimum": 0.1,
+          "maximum": 1,
           "description": "Highlight opacity"
         },
-        "comment": {
+        "color-assist.ruler": {
           "type": "string",
-          "default": "//",
-          "description": "Comment sign"
+          "enum": [
+            "on",
+            "off",
+            "only"
+          ],
+          "default": "on",
+          "description": "Ruler options"
         }
       }
     }

@@ -1,17 +1,20 @@
 import * as vscode from "vscode";
 import { TextEditorDecorationType } from "vscode";
 import { webColors } from "./webcolors";
+import { setCommentLineSymbol } from "./setCommentLineSymbol";
 
 export function activate(context: vscode.ExtensionContext) {
-  const config = vscode.workspace.getConfiguration("color-assist");
+  let activeEditor = vscode.window.activeTextEditor;
+  let decorations: TextEditorDecorationType[] = [];
   let timeout: NodeJS.Timer | undefined = undefined;
-  let comment = config.comment ? config.comment : "//";
-  let opacity = config.opacity ? config.opacity : 0.1;
-
-  const defaultColor = "rgba(100,200,0,0.2)";
 
   //#red
-  function colorPicker(colorName: string, colorTable: any) {
+  function colorPicker(
+    colorName: string,
+    colorTable: any,
+    opacity: number = 0.1
+  ) {
+    const defaultColor = "rgba(100,200,0,0.2)";
     const _rgba = colorTable[colorName][1];
     const rgba = _rgba.replace("1)", `${opacity})`);
     if (!rgba) {
@@ -22,54 +25,68 @@ export function activate(context: vscode.ExtensionContext) {
   //#
 
   //#blue
-  const textDecoration = (color: string) => {
-    return vscode.window.createTextEditorDecorationType({
-      backgroundColor: colorPicker(color, webColors),
-      overviewRulerColor: colorPicker(color, webColors),
-      overviewRulerLane: vscode.OverviewRulerLane.Right
-    });
+  const textDecoration = (color: string, config?: any) => {
+    const opacity = config.opacity ? config.opacity : 0.1;
+    const rulerOptions = config.ruler ? config.ruler : "on";
+    if (rulerOptions === "on") {
+      return vscode.window.createTextEditorDecorationType({
+        backgroundColor: colorPicker(color, webColors, opacity),
+        overviewRulerColor: colorPicker(color, webColors, 0.5),
+        overviewRulerLane: vscode.OverviewRulerLane.Right
+      });
+    } else if (rulerOptions === "off") {
+      return vscode.window.createTextEditorDecorationType({
+        backgroundColor: colorPicker(color, webColors, opacity)
+      });
+    } else {
+      return vscode.window.createTextEditorDecorationType({
+        overviewRulerColor: colorPicker(color, webColors, 0.5),
+        overviewRulerLane: vscode.OverviewRulerLane.Right
+      });
+    }
   };
   //#
 
-  const escapeRegExp = (s: any) => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
-
-
-  let decorations: TextEditorDecorationType[] = [];
+  //#magenta
+  function escapeRegExp(s: any) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+  }
+  //#
 
   //#green
   function changeColor() {
     if (!activeEditor) {
       return;
     }
-    decorations.forEach(d => d.dispose());
+
+    decorations.forEach(d => d.dispose()); // dispose previous highlights
+
+    const config = vscode.workspace.getConfiguration("color-assist");
+    let languageId = activeEditor.document.languageId;
+    let commentLineSymbol = setCommentLineSymbol(languageId);
     const regex = new RegExp(
-      `(${escapeRegExp(comment)}#(\\w*))([\\s\\S]*?)(${escapeRegExp(
-        comment
+      `(${escapeRegExp(commentLineSymbol)}#(\\w*))([\\s\\S]*?)(${escapeRegExp(
+        commentLineSymbol
       )}#)`,
       "gm"
     );
     const text = activeEditor.document.getText();
-    // const sections: vscode.DecorationOptions[] = [];
     let match;
 
     while ((match = regex.exec(text))) {
-      // debugger;
       const startPos = activeEditor.document.positionAt(match.index);
       const endPos = activeEditor.document.positionAt(
         match.index + match[0].length
       );
       let decoration = { range: new vscode.Range(startPos, endPos) };
       const color = match[2];
-      const decorationType = textDecoration(color);
+      const decorationType = textDecoration(color, config);
       decorations.push(decorationType);
       activeEditor.setDecorations(decorationType, [decoration]);
     }
   }
   //#
 
-  let activeEditor = vscode.window.activeTextEditor;
-
-  //#purple
   function triggerUpdateDecorations() {
     if (timeout) {
       clearTimeout(timeout);
@@ -77,7 +94,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
     timeout = setTimeout(changeColor, 500);
   }
-  //#
 
   if (activeEditor) {
     triggerUpdateDecorations();
