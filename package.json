@@ -8,8 +8,14 @@
     "url": "https://github.com/axmz/vscode-color-assist"
   },
   "description": "Highlight your code blocks",
-  "tags": ["color","highlight", "background", "js", "python"],
-  "version": "0.0.1",
+  "tags": [
+    "color",
+    "highlight",
+    "background",
+    "js",
+    "python"
+  ],
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.32.0"
   },
