@@ -1,9 +1,13 @@
 # About
 
-The extension is experimental.
-
 Color Assist allows you to highlight your code blocks.  
-The highligh scope is defined by `//#color` and `//#`
+It is for "visual" coders.  
+
+# How to use
+
+To highlight a block of code you need to wrap it with Color Assist scope.  
+The highligh scope is defined by `//#color` and `//#`  
+See below  
 
 ## Examples
 
@@ -39,14 +43,15 @@ def my_function_1():
 
 <img src="./assets/color-assist-py.png" width="70%">
 
-## What color are available?
+## What colors are available?
 
 All 140 web colors: [link](https://htmlcolorcodes.com/)
 
 ## What else it can do?
 
-Color Assist can also highlight accordingly the ruler  
-See the right side of the image above  jj
+Color Assist can also highlight accordingly the ruler.  
+See the right side of the image above.  
+Also, the opacity can be adjusted.  
 
 # Settings
 
@@ -61,10 +66,10 @@ See the right side of the image above  jj
 
 <!-- options for ruler color (off/only) -->
 <!-- darker ruler colors -->
-<!-- custom symbol -->
-<!-- hex colors -->
+<!-- custom symbol? -->
+<!-- hex colors? -->
+<!-- check if contributes works   -->
 
 highlight in minimap too (just like errors)  
 what's the bug when changing file types?  
 comment blocks support  
-check if contributes works  

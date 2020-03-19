@@ -2,11 +2,12 @@
   "name": "color-assist",
   "displayName": "Color Assist",
   "publisher": "axmz",
+  "icon": "./assets/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/axmz/vscode-color-assist"
   },
-  "description": "Highlight blocks of code",
+  "description": "Highlight your code blocks",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.43.0"
