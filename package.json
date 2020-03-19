@@ -28,6 +28,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
+    "minimist": ">=1.2.2",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.1",
     "@types/node": "^12.11.7",
