@@ -3,9 +3,11 @@
 The extension is experimental.
 
 Color Assist allows you to highlight your code blocks.  
-By default the highligh scope is defined by `//#color` and `//#`
+The highligh scope is defined by `//#color` and `//#`
 
-## Example
+## Examples
+
+### JavaScript
 
 ```JavaScript
 //#red
@@ -15,13 +17,36 @@ function log() {
 //#
 ```
 
+### It will look like that:
+
+<img src="./assets/color-assist-js.png" width="70%">
+
+### Python
+
+```Python
+##magenta
+def my_function_0():
+  print("Hello magenta")
+##
+
+##orange
+def my_function_1():
+  print("Hello orange")
+##
+```
+
+### It will look like that:
+
+<img src="./assets/color-assist-py.png" width="70%">
+
 ## What color are available?
 
 All 140 web colors: [link](https://htmlcolorcodes.com/)
 
-### It will look like that:
+## What else it can do?
 
-<img src="./assets/color-assist.png" width="70%">
+Color Assist can also highlight accordingly the ruler  
+See the right side of the image above  jj
 
 # Settings
 
@@ -39,6 +64,7 @@ All 140 web colors: [link](https://htmlcolorcodes.com/)
 <!-- custom symbol -->
 <!-- hex colors -->
 
-highlight in minimap too (just like errors)
-what's the bug when changing file types?
-comment blocks support
+highlight in minimap too (just like errors)  
+what's the bug when changing file types?  
+comment blocks support  
+check if contributes works  
