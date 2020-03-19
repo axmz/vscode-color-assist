@@ -43,11 +43,11 @@ def my_function_1():
 
 <img src="./assets/color-assist-py.png" width="70%">
 
-## What colors are available?
+# What colors are available?
 
 All 140 web colors: [link](https://htmlcolorcodes.com/)
 
-## What else it can do?
+# What else it can do?
 
 Color Assist can also highlight accordingly the ruler.  
 See the right side of the image above.  
@@ -61,15 +61,3 @@ Also, the opacity can be adjusted.
 "color-assist.ruler": "off"
 }
 ```
-
-# Todo
-
-<!-- options for ruler color (off/only) -->
-<!-- darker ruler colors -->
-<!-- custom symbol? -->
-<!-- hex colors? -->
-<!-- check if contributes works   -->
-
-highlight in minimap too (just like errors)  
-what's the bug when changing file types?  
-comment blocks support  

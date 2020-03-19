@@ -1,9 +1,8 @@
 # Change Log
 
-All notable changes to the "color-assist" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
 
-- Initial release
+- highlight in minimap too (just like errors)  
+- what's the bug when changing file types?  
+- comment blocks support  
+<!-- - hex colors? -->
