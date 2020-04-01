@@ -8,4 +8,5 @@
 - put images at the top in readme.md  
 - change dark images in readme.md  
 - exclude certain filetypes  
+- make a gif on a large codebase and put it at the top of readme.md  
 <!-- - hex colors? -->
