@@ -1,4 +1,5 @@
 check readme.md  
 check changelog.md  
+prepublish and test the extensions  
 commit  
-[publish](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+[publish with vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
