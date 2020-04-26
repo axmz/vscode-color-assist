@@ -1,3 +1,5 @@
+<img src="./assets/color-assist-vscode.png" width="100%">
+
 # What does it do?
 
 Color Assist allows you to highlight your code blocks.
